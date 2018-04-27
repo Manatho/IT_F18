@@ -1,11 +1,14 @@
 <template>
-    <div id='app-root' class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3">
-                <menu-component />
-            </div>
-            <div class="col-sm-9">
+    <div id='app-root' class="fullheight">
+        <menu-component />
+        <div class="app-container">
+            <div class="app-content">
                 <router-view></router-view>
+            </div>
+            <div class="app-footer">
+                <div class="text-center">
+                    <p>© 2018 Copyright: Mathies Friis Hovedskou</p>
+                </div>
             </div>
         </div>
     </div>

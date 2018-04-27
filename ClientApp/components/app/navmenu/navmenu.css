@@ -1,0 +1,37 @@
+.main-nav li .glyphicon {
+    margin-right: 10px;
+}
+
+.main-nav li a.router-link-active,
+.main-nav li a.router-link-active:hover,
+.main-nav li a.router-link-active:focus {
+    background-color: rgb(231, 231, 231);
+    color: rgb(32, 32, 32);
+    border-bottom: solid rgb(253, 109, 66) 2px;
+}
+
+.main-nav li a.router-link-active .glyphicon{
+    color:  rgb(228, 100, 61);
+}
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+@media(max-width: 768px){
+    .main-nav li a.router-link-active,
+.main-nav li a.router-link-active:hover,
+.main-nav li a.router-link-active:focus {
+    background-color: rgb(231, 231, 231);
+    border-bottom: none;
+    border-left: solid rgb(253, 109, 66) 4px;
+    color: rgb(32, 32, 32);
+   
+}
+
+
+}
