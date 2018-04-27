@@ -20,7 +20,7 @@ body{
     grid-column: 2;
     grid-row: 1;
     background-color: rgb(238, 238, 238);
-    padding-left: 2%;
+    padding: 1%;
 }
 
 .app-footer{
@@ -35,6 +35,8 @@ body{
 .fullheight{
     height: 100%;
 }
+
+
 
 @media(max-width: 768px){
     .app-container{
