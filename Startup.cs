@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using IT_F18.Models;
 
 namespace IT_F18
 {
@@ -22,6 +24,8 @@ namespace IT_F18
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<BlogDB>(options => options.UseSqlServer(Configuration.GetConnectionString("BlogDatabase")));
             services.AddMvc();
         }
 
@@ -40,6 +44,7 @@ namespace IT_F18
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
 
             app.UseStaticFiles();
 
