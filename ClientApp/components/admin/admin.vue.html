@@ -1,6 +1,16 @@
 <template>
     <div>
         <h1>Admin</h1>
+
+        <ul v-if="subscribers.length">
+            <li v-for="item in subscribers">
+                {{item.email}} –
+                <button v-on:click="unsubscribe(item)" class="btn btn-link">
+                    Completed
+                </button>
+            </li>
+        </ul>
+        <p v-else class="text-success">Nothing to do right now!</p>
     </div>
 </template>
 
