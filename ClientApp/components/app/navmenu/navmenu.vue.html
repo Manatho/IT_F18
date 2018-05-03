@@ -13,7 +13,7 @@
                     </button>
                     <a class="navbar-brand" href="/">IT-F18 Assignment</a>
                 </div>
-
+                
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -38,10 +38,19 @@
                             </router-link>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+
+
+                    <ul class="nav navbar-nav navbar-right" v-if="$store.getters.getAdmin">
                         <li>
                             <router-link to="/admin" :exact="true">
                                 <span class="glyphicon glyphicon-cog"></span> Admin
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" v-else>
+                        <li>
+                            <router-link to="/login" :exact="true">
+                                Login
                             </router-link>
                         </li>
                     </ul>
