@@ -1,7 +1,34 @@
 <template>
     <div>
         <h1>Gallery</h1>
+        <div class="panel-group" v-if="entries.length">
+            <div class="panel panel-default" v-for="item in entries">
+                <div class="panel-heading">{{item.title}}</div>
+                <div class="panel-body">
+                    <div class="col-xs-8">
+                        <img v-on:click="setLightbox(true, item)" v-bind:src="item.imagePath" class="float-right" style="max-width: 100%;" />
+                        
+                        <div class="lightbox" v-if="showLightBox" v-on:click="setLightbox(false, item)">
+                            <img v-bind:src="lightboxImage" v-bind:class="{}" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <p>{{item.description}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <p v-else class="text-success">No gallery entries</p>
+
+
+
+
+
+
     </div>
 </template>
 
 <script src="./gallery.ts"></script>
+<style src="./resources/style/gallery.css" />

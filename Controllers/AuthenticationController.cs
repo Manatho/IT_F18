@@ -24,15 +24,14 @@ namespace IT_F18.Controllers
         [Route("login")]
         public IActionResult Login([FromBody] LoginData data)
         {
-            Console.WriteLine("Hej");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(data.Username == "Kurt" && data.Password == "123")
+            if(data.Username == "Admin" && data.Password == "123")
             {
-                Response.Cookies.Append("cookie", "hej");
+                Response.Cookies.Append("cookie", "admin");
                 Response.StatusCode = 200;
             } 
             else

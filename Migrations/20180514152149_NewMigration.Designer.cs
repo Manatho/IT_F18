@@ -11,9 +11,10 @@ using System;
 namespace IT_F18.Migrations
 {
     [DbContext(typeof(BlogDB))]
-    partial class BlogDBModelSnapshot : ModelSnapshot
+    [Migration("20180514152149_NewMigration")]
+    partial class NewMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
