@@ -8,10 +8,12 @@ import { Component } from 'vue-property-decorator';
 export default class AdminComponent extends Vue {
     subscribers: Subscriber[];
     galleryEntries: GalleryEntry[];
+    aboutInfo: AboutInfo;
 
     newTitle: string;
     newDescription: string;
     file: FormData;
+
 
     data() {
         return {
@@ -19,7 +21,8 @@ export default class AdminComponent extends Vue {
             newDescription: '',
             subscribers: [],
             galleryEntries: [],
-            file: new FormData()
+            file: new FormData(),
+            aboutInfo: null
         };
     }
 
@@ -34,6 +37,12 @@ export default class AdminComponent extends Vue {
             .then(response => response.json() as Promise<Subscriber[]>)
             .then(data => {
                 this.subscribers = data;
+            });
+
+        fetch('/api/AboutInfoes')
+            .then(response => response.json() as Promise<AboutInfo[]>)
+            .then(data => {
+                this.aboutInfo = data[0];
             });
 
     }
@@ -69,31 +78,24 @@ export default class AdminComponent extends Vue {
 
         this.file.append("json", JSON.stringify(<GalleryEntry>{ title: this.newTitle, description: this.newDescription }));
 
-/*         fetch('/api/GalleryEntries', {
-            method: 'post',
-            body: this.file,
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'multipart/form-data'
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    console.log("Hej");
-                }
-            }); */
-
-            axios.post(`/api/GalleryEntries`, this.file,
+        axios.post(`/api/GalleryEntries`, this.file,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(response => {
-                alert(response.data);
-            }).catch(error => {
-                console.log(error);
-            });
+            })
 
+    }
+
+    updateAbout(event: Event) {
+        fetch(`/api/aboutinfoes/${this.aboutInfo.id}`, {
+            method: 'put',
+            body: JSON.stringify(this.aboutInfo),
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            })
+        })
     }
 
     fileChange(fileList: FileList) {

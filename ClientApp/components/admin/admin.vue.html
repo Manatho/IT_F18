@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Admin</h1>
-        <div class="col-xs-4">
+        <div class="col-xs-2">
             <h3>Subscribers</h3>
             <ul v-if="subscribers.length">
                 <li v-for="item in subscribers">
@@ -13,12 +13,12 @@
             </ul>
             <p v-else class="text-success">No subscribers</p>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-5">
             <h3>Gallery</h3>
             <h4>Add Entry</h4>
             <div class="form-group">
                 <input class="form-control" v-model="newTitle" type="text" placeholder="Heading">
-                <textarea class="form-control" v-model="newDescription" placeholder="Description" name="" id="" rows="4"></textarea>
+                <textarea class="form-control" v-model="newDescription" placeholder="Description" rows="4"></textarea>
                 <input type="file" id="file" v-on:change="fileChange($event.target.files)">
                 <button v-on:click="addEntry($event)">Submit</button>
             </div>
@@ -27,20 +27,35 @@
             <h4>Entries</h4>
             <div v-if="galleryEntries.length">
                 <div v-for="item in galleryEntries">
-                    <div class="col-xs-8">
+                    <div class="col-xs-12">
                         <div class=" panel panel-default">
                             <div class="panel-heading">{{item.title}}</div>
-                            <div class="panel-body"> {{item.description}}</div>
+                            <div class="panel-body">
+                                 <p>{{item.description}}</p>
+                                 <button v-on:click="deleteEntry(item)" class="btn btn-danger" style="float:right">delete</button>
+                                </div>
+                            
                         </div>
-                    </div>
-                    <div class="col-xs-4">
-                        <button v-on:click="deleteEntry(item)" class="btn btn-danger">delete</button>
                     </div>
 
                 </div>
             </div>
             <p v-else class="text-success">No entries</p>
         </div>
+        <div class="col-xs-5" v-if="aboutInfo">
+            <h3>About</h3>
+            <h4>Name</h4>
+            <input class="form-control" type="text" :value="aboutInfo.name" v-model="aboutInfo.name">
+            <h4>Birthday</h4>
+            <input class="form-control" type="date" v-model="aboutInfo.birthDay" >
+            <h4>Description</h4>
+            <textarea class="form-control" :value="aboutInfo.description" v-model="aboutInfo.description" rows="4"></textarea>
+            <h4>Current Occupation</h4>
+            <input class="form-control" type="text" :value="aboutInfo.currentOccupation" v-model="aboutInfo.currentOccupation">
+
+            <button v-on:click="updateAbout($event)">Update</button>
+        </div>
+
     </div>
 </template>
 

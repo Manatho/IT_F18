@@ -33,7 +33,7 @@ export default class LoginComponent extends Vue {
                 
             } else {
                 this.$store.dispatch("setAdmin", true);
-                this.$router.push("/")
+                this.$router.push("/admin")
             }
         });
         

@@ -12,7 +12,7 @@ Vue.use(VeeValidate);
 Vue.use(Vuex);
 
 const routes = [
-    { path: '/', component: require('./components/home/home.vue.html') },
+    { path: '/', redirect: "/about"},
     { path: '/about', component: require('./components/about/about.vue.html') },
     { path: '/gallery', component: require('./components/gallery/gallery.vue.html') },
     { path: '/signup', component: require('./components/signup/signup.vue.html') },
