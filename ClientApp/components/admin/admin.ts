@@ -1,8 +1,10 @@
 import './../../model/GalleryEntry'
 import './../../model/Subscriber'
+import './../../model/About'
 import Vue from 'vue';
 import axios from "axios";
 import { Component } from 'vue-property-decorator';
+import GalleryComponent from '../gallery/gallery';
 
 @Component
 export default class AdminComponent extends Vue {
@@ -76,14 +78,17 @@ export default class AdminComponent extends Vue {
     addEntry(event: Event) {
         if (event) event.preventDefault();
 
-        this.file.append("json", JSON.stringify(<GalleryEntry>{ title: this.newTitle, description: this.newDescription }));
+        let newEntry = <GalleryEntry>{ title: this.newTitle, description: this.newDescription };
+        this.file.append("json", JSON.stringify(newEntry));
 
         axios.post(`/api/GalleryEntries`, this.file,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            })
+            }).then(() => {
+                this.galleryEntries.push(newEntry)
+            });
 
     }
 

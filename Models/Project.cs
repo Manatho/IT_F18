@@ -1,5 +1,7 @@
 ﻿namespace IT_F18.Models
 {
+
+    //Unused
     public class Project
     {
         public AboutInfo About;

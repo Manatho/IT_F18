@@ -13,9 +13,6 @@ namespace IT_F18.Models
         {
         }
 
-        public DbSet<GalleryEntry> galleryEntry;
-        public DbSet<Subscriber> subscribers;
-        public DbSet<AboutInfo> aboutinfo;
         public DbSet<IT_F18.Models.AboutInfo> AboutInfo { get; set; }
         public DbSet<IT_F18.Models.Subscriber> Subscriber { get; set; }
         public DbSet<IT_F18.Models.GalleryEntry> GalleryEntry { get; set; }

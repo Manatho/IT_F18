@@ -30,14 +30,9 @@ export default class GalleryComponent extends Vue {
     setLightbox(show: boolean, event: GalleryEntry) {
 
         if (show) {
-            console.log(event);
-
             this.lightboxImage = event.imagePath;
         }
 
         this.showLightBox = show;
-
-
-
     }
 }

@@ -21,14 +21,14 @@ namespace IT_F18.Controllers
             _context = context;
         }
 
-        // GET: api/GalleryEntries
+        //Generated method
         [HttpGet]
         public IEnumerable<GalleryEntry> GetGalleryEntry()
         {
             return _context.GalleryEntry;
         }
 
-        // GET: api/GalleryEntries/5
+        //Generated method
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGalleryEntry([FromRoute] int id)
         {
@@ -47,7 +47,7 @@ namespace IT_F18.Controllers
             return Ok(galleryEntry);
         }
 
-        // PUT: api/GalleryEntries/5
+        //Generated method
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGalleryEntry([FromRoute] int id, [FromBody] GalleryEntry galleryEntry)
         {
@@ -82,15 +82,20 @@ namespace IT_F18.Controllers
             return NoContent();
         }
 
-        // POST: api/GalleryEntries
+        //Customized method
         [HttpPost]
         public async Task<IActionResult> PostGalleryEntry()
         {
+            //As both a file and info on the GalleryEntry come together
+            //the default parser using [FromBody] caused issues, so
+            //Instead it is done manually, there may be better/automtic
+            //ways of doing this.
+
             GalleryEntry galleryEntry = (GalleryEntry)JsonConvert.DeserializeObject(Request.Form["json"], typeof(GalleryEntry));
+
+            //Get the file from the request and saves it in the wwwroot folder
             var file = Request.Form.Files[0];
-
             var path = Path.Combine( Directory.GetCurrentDirectory(), "wwwroot",file.FileName);
-
             galleryEntry.ImagePath = "/" + file.FileName;
 
             using (var stream = new FileStream(path, FileMode.Create))
@@ -98,20 +103,19 @@ namespace IT_F18.Controllers
                 await file.CopyToAsync(stream);
             }
 
-
+            //The rest is generated code
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-
             _context.GalleryEntry.Add(galleryEntry);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGalleryEntry", new { id = galleryEntry.Id }, galleryEntry);
         }
 
-        // DELETE: api/GalleryEntries/5
+        //Generated method
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGalleryEntry([FromRoute] int id)
         {

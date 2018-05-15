@@ -12,14 +12,16 @@ namespace IT_F18.Controllers
     [Route("api/[controller]")]
     public class AuthenticationController : Controller
     {
-        // GET: api/Subscribers
+        // Used on the frontend to check if the current user is Admin
+        // The "security" of the following approach is far from optimal
+        // and serves more as a means to hide or show elements than
+        // actual security.
         [HttpGet]
         public bool IsAdminUser()
         {
             return Request.Cookies["cookie"] != null;
         }
 
-        // POST: api/Subscribers
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] LoginData data)
@@ -29,7 +31,7 @@ namespace IT_F18.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(data.Username == "Admin" && data.Password == "123")
+            if(data.Username.ToLower() == "admin" && data.Password == "123")
             {
                 Response.Cookies.Append("cookie", "admin");
                 Response.StatusCode = 200;
@@ -42,7 +44,6 @@ namespace IT_F18.Controllers
             return new EmptyResult();
         }
 
-        // DELETE: api/Subscribers/5
         [HttpPost]
         public IActionResult Logout()
         {

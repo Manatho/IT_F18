@@ -19,14 +19,14 @@ namespace IT_F18.Controllers
             _context = context;
         }
 
-        // GET: api/AboutInfoes
+        //Generated method
         [HttpGet]
         public IEnumerable<AboutInfo> GetAboutInfo()
         {
             return _context.AboutInfo;
         }
 
-        // PUT: api/AboutInfoes/5
+        //Generated method
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAboutInfo([FromRoute] int id, [FromBody] AboutInfo aboutInfo)
         {
@@ -59,21 +59,6 @@ namespace IT_F18.Controllers
             }
 
             return NoContent();
-        }
-
-        // POST: api/AboutInfoes
-        [HttpPost]
-        public async Task<IActionResult> PostAboutInfo([FromBody] AboutInfo aboutInfo)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.AboutInfo.Add(aboutInfo);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAboutInfo", new { id = aboutInfo.Id }, aboutInfo);
         }
 
         private bool AboutInfoExists(int id)

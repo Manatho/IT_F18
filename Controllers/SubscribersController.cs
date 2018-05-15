@@ -19,14 +19,14 @@ namespace IT_F18.Controllers
             _context = context;
         }
 
-        // GET: api/Subscribers
+        //Generated method
         [HttpGet]
         public IEnumerable<Subscriber> GetSubscriber()
         {
             return _context.Subscriber;
         }
 
-        // POST: api/Subscribers
+        //Generated method
         [HttpPost]
         public async Task<IActionResult> PostSubscriber([FromBody] Subscriber subscriber)
         {
@@ -41,7 +41,7 @@ namespace IT_F18.Controllers
             return CreatedAtAction("GetSubscriber", new { id = subscriber.Id }, subscriber);
         }
 
-        // DELETE: api/Subscribers/5
+        //Generated method
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSubscriber([FromRoute] int id)
         {

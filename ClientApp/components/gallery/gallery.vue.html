@@ -9,7 +9,7 @@
                         <img v-on:click="setLightbox(true, item)" v-bind:src="item.imagePath" class="float-right" style="max-width: 100%;" />
                         
                         <div class="lightbox" v-if="showLightBox" v-on:click="setLightbox(false, item)">
-                            <img v-bind:src="lightboxImage" v-bind:class="{}" />
+                            <img v-bind:src="lightboxImage" />
                         </div>
                     </div>
                     <div class="col-xs-3">

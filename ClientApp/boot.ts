@@ -20,10 +20,9 @@ const routes = [
     { path: '/login', component: require('./components/auth/login.vue.html') },
 ];
 
-
+// Setup for Vuex to store admin state on the site
 class State{
     admin: boolean;
-    
     constructor(){
         this.admin = false;
     }

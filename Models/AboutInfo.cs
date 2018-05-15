@@ -12,6 +12,8 @@ namespace IT_F18.Models
         public DateTime BirthDay { get; set; }
         public string Description { get; set; }
         public string CurrentOccupation { get; set; }
+
+        //Didn't get around to use this aspect
         public List<Project> Projects { get; set; }
     }
 }
